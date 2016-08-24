@@ -2,137 +2,6 @@
 <html>
     <head>
         <title>目次</title>
-        <style>
-
-            @import url(//fonts.googleapis.com/earlyaccess/notosansjapanese.css);
-        
-            body {
-                background-color: #fff;
-                font-family: 'Noto Sans Japanese', serif;
-                font-weight:100;
-            }
-            
-            ul {
-                width: 80%;
-                margin: 0 auto;
-            }
-            
-            li {
-                display: block;
-                float: left;
-                border: 1px solid #aaa;
-                margin: 2px;
-                
-            }
-            
-            .big {
-                font-size: 100px;
-            }
-            
-            .back {
-                background-color: rgb(230, 230, 230);
-            }
-            
-            article {
-                width: 100%;
-                height: 800px;
-                padding-top: 100px;
-                overflow: scroll;
-            }
-            
-            .center {
-                text-align: center;
-            }
-            
-            header {
-                border-bottom: 2px dashed #ccc;
-                background-color: #fff;
-            }
-            
-            .zimg {
-                width: 100%;
-                -moz-transition: all 0.5s ease;
-                -webkit-transition: all 0.5s ease;
-                -o-transition: all 0.5s ease;
-                -ms-transition: all 0.5s ease;
-                transition: all 0.5s ease;
-                
-                -webkit-filter: brightness(100%);
-                -moz-filter: brightness(100%);
-                -o-filter: brightness(100%);
-                -ms-filter: brightness(100%);
-                filter: brightness(100%);
-                
-                background-color: #fff;
-                
-            }
-            
-            .zimg:hover {
-                -webkit-transform: scale(1.5);
-                -moz-transform: scale(1.5);
-                -o-transform: scale(1.5);
-                -ms-transform: scale(1.5);
-                transform: scale(1.5);
-                
-                -webkit-filter: brightness(50%);
-                -moz-filter: brightness(50%);
-                -o-filter: brightness(50%);
-                -ms-filter: brightness(50%);
-                filter: brightness(50%);
-                
-            }
-            .ilink{
-                cursor: pointer;
-                background-color: #fff;
-            }
-            .ilink figcaption {
-                color: #fff;
-                background: #333;
-                background: rgba(0,0,0,.7);
-                position: absolute;
-                bottom: 0;
-                width: 100%;
-                height: 60px;
-                padding: 20px;
-                line-height: 1;
-             
-                /* 1行で納める */
-                overflow: hidden;
-                text-overflow: ellipsis;
-                white-space: nowrap;
-             
-                transition: all 0.2s ease 0.3s;
-                transform: translateY(120px);
-            }
-            .ilink figure:hover figcaption {
-                transform: translateY(50px);
-            }
-            
-            dt {
-                width: 200px;
-                margin: auto 0;
-            }
-            dt.title {
-                border-bottom: 2px solid #aaa;
-                margin: auto 0;
-                text-align: center;
-                background-color: #fff;
-            }
-            figure {
-                width: 150px;
-                margin: 10px auto;
-            }
-            figure.img {
-                width: 150px;
-                height: 150px;
-                margin: 10px auto;
-                overflow: hidden;
-                display: block;
-                border: 1px solid #aaa;
-                position: relative;
-            }
-            
-        </style>
         <script type="text/javascript" src="js/plugin/jquery.min.js"></script>
         <script src="./js/plugin/jquery-ui.min.js"></script>
         <!-- jQuery UI -->
@@ -141,6 +10,8 @@
         <link href="./js/plugin/jquery-ui.theme.min.css" rel="stylesheet">
         <!-- Noto Fonts -->
         <link rel="stylesheet" href="//fonts.googleapis.com/earlyaccess/notosansjapanese.css">
+        <!-- CSS -->
+        <link rel="stylesheet" href="css/theme.css" type="text/css" />
     </head>
     <body>
         <header class="big center">
@@ -156,7 +27,7 @@
                     </figure>
                     
                 </li>
-                <li class="ilink">
+                <li class="ilink" href="novel.html">
                     <dt class="title">ノベルゲーム(dn360)</dt>
                     <figure class="img">
                         <img src="img/logo/jQuery.gif" class="zimg">
