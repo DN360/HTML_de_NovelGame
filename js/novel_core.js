@@ -167,19 +167,13 @@ var drawGame = function() {
                 var target = v[k].target;
                 if (target != undefined) {
                     var scale = 0.8;
-                    $('canvas').drawRect({
-                        fillStyle: novelConfig.color,
-                        x: i == 0 ? 300 : 900, y:  600 - scale * imageData[target].height / 2,
-                        width: imageData[target].width * scale, height: imageData[target].height * scale,
-                        opacity: 0.2
-                    });
-                    debug({x: i == 0 ? 300 : 900, y:  600 - scale * imageData[target].height / 2,
-                        width: imageData[target].width * scale, height: imageData[target].height * scale,
+                    debug({x: i == 0 ? 300 : 900, y:  600 - scale * imageData[target].img.height / 2,
+                        width: imageData[target].img.width * scale, height: imageData[target].img.height * scale,
                         opacity: 0.2});
                     $('canvas').drawImage({
                         source: novelConfig.person[target],
-                        x: i == 0 ? 300 : 900, y:  600 - scale * imageData[target].height / 2,
-                        width: imageData[target].width * scale, height: imageData[target].height * scale,
+                        x: i == 0 ? 300 : 900, y:  600 - scale * imageData[target].img.height / 2,
+                        width: imageData[target].img.width * scale, height: imageData[target].img.height * scale,
                         opacity: v[k].opacity
                     });
                 }
