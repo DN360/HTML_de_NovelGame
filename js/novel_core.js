@@ -227,16 +227,31 @@ var Game_KeyDown = function(key) {
         drawMode = 1;
         opacity = 0;
     } else if (key.keyCode == Key.SPACE) {
-        var loop = true;
-        while(loop) {
-            readScript();
-            if (personObj["option"] == undefined || personObj["option"] == "#hide"){
-                loop = false;
-            } 
-        }
+        nextSerif();
     }
         
 };
+
+$(document).on("click", "#canvas", function() {
+    if (drawMode == 0) {
+        drawMode = 1;
+        opacity = 0;
+    }
+    else 
+        nextSerif();
+    
+});
+
+function nextSerif() {
+    var loop = true;
+    while(loop) {
+        readScript();
+        if (personObj["option"] == undefined || personObj["option"] == "#hide"){
+            loop = false;
+        } 
+    }
+}
+
 
 function getBackSRC(backName) {
     return novelConfig.background[backName];
