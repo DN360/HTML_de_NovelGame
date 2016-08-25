@@ -96,6 +96,9 @@ var updateGame = function() {
                 (!addT && v[k].opacity <= v[k].maxcity)) {
                     v[k].opacity = v[k].maxcity;
                 }
+            if (v[k].opacity == 0 && personObj.option == "#hide") {
+                nextSerif();
+            }
         }
     });
 };
@@ -166,10 +169,7 @@ var drawGame = function() {
             for (var k in v) {
                 var target = v[k].target;
                 if (target != undefined) {
-                    var scale = 0.8;
-                    debug({x: i == 0 ? 300 : 900, y:  600 - scale * imageData[target].img.height / 2,
-                        width: imageData[target].img.width * scale, height: imageData[target].img.height * scale,
-                        opacity: 0.2});
+                    var scale = novelConfig.imageScale;
                     $('canvas').drawImage({
                         source: novelConfig.person[target],
                         x: i == 0 ? 300 : 900, y:  600 - scale * imageData[target].img.height / 2,
@@ -180,8 +180,17 @@ var drawGame = function() {
                 i++;
             }
         });
+        
+        //ボード
         boardOp = boardOp >= 0.8 ? 0.8 : boardOp + 0.1;
         boardComp = boardOp >= 0.8;
+        $('canvas').drawRect({
+            fillStyle: novelConfig.color,
+            x: 150, y: 400,
+            width: 200,
+            height: 30,
+            opacity: boardOp
+        });
         $('canvas').drawRect({
             fillStyle: novelConfig.color,
             x: 600, y: 500,
@@ -197,26 +206,27 @@ var drawGame = function() {
         $('canvas').drawText({
             fillStyle: '#fff',
             strokeStyle: '#555',
-            strokeWidth: 1,
-            x: 100, y: 440,
-            maxWidth: 1100,
-            fontSize: 24,
-            fontFamily: 'Noto Sans Japanese',
+            strokeWidth: 0.5,
+            x: novelConfig.namePosition.x, y: novelConfig.namePosition.y,
+            maxWidth: 200,
+            fontSize: novelConfig.nameFontSize,
+            fontFamily: novelConfig.nameFont,
             align: 'left',
+            fromCenter: false,
             text: t_name
         });
         
         //セリフ
         $('canvas').drawText({
             fillStyle: '#fff',
-            strokeStyle: '#555',
-            strokeWidth: 1,
-            x: 60, y: 500,
+            strokeStyle: '#000',
+            strokeWidth: 0.1,
+            x: novelConfig.serifPosition.x, y: novelConfig.serifPosition.y,
             maxWidth: 1100,
-            fontSize: 24,
-            fontFamily: 'Noto Sans Japanese',
+            fontSize: novelConfig.serifFontSize,
+            fontFamily: novelConfig.serifFont,
             align: 'left',
-            respectAlign: true,
+            fromCenter: false,
             text: t_serif
         });
     }
@@ -344,18 +354,21 @@ function readScript() {
                     case '#show':
                         pushPersonOne(targetPNum, "target", t);
                         personObj["person"][targetPNum]["opacity"] = 0;
-                        personObj["person"][targetPNum]["addcity"] = 0.1;
-                        personObj["person"][targetPNum]["maxcity"] = 0.5;
+                        personObj["person"][targetPNum]["addcity"] = novelConfig.OpacityAdditionSpeed;
+                        personObj["person"][targetPNum]["maxcity"] = novelConfig.noSpotOpacity;
+                        break;
+                    case '#chan':
+                        pushPersonOne(targetPNum, "target", t);
                         break;
                     case '#spot':
                         $(personObj["person"]).each(function(i, v) {
                             for (var k in v) {
-                                personObj["person"][k]["maxcity"] = targetPNum == k ? 1 : 0.5;
+                                personObj["person"][k]["maxcity"] = targetPNum == k ? 1 : novelConfig.noSpotOpacity;
                             }
                         });
                         break;
                     case '#hide':
-                        personObj["person"][targetPNum]["addcity"] = 0.1;
+                        personObj["person"][targetPNum]["addcity"] = novelConfig.OpacityAdditionSpeed;
                         personObj["person"][targetPNum]["maxcity"] = 0;
                         break;
                     default:
@@ -364,7 +377,6 @@ function readScript() {
             }
         }
     });
-    debug(personObj)
     ++readLine;
     if (readLine >= serif_script.length) {
         readLine = serif_script.length - 1;

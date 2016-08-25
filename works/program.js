@@ -1,5 +1,6 @@
 var date = scenario.split("##");
 var n = 0;
+
 function going() {
   scene = date[n].split(",");
   document.getElementById("character").innerHTML = scene[0];
@@ -8,8 +9,8 @@ function going() {
 }
 going();
 
-function enter(key){
-  if(key == 13){
+document.onkeyup = function() {
+  if(event.keyCode == 13){
     going();
   }
 }
